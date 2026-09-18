@@ -5,10 +5,13 @@ Created on Tue Sep 15 11:47:17 2026
 @author: alexg
 """
 import matplotlib.pyplot as plt
+import numpy as np
 
-timestep = 0.05 #change in t
+plt.rcParams['figure.dpi'] = 300
+
+timestep = 0.01 #change in t
 max_time = 10 #tmax
-tau = 2.0 ##lifetime for decay/time constant
+tau = 3.0 ##lifetime for decay/time constant
 
 time0 = 0 ##t
 quantity0 = 10 ## N0
@@ -27,5 +30,26 @@ while not abs(timec-max_time) < timestep/2:
     timec = timec + timestep
     time.append(timec)
     quanity.append(quantc)
-    
-plt.plot(time, quanity)
+
+
+timet = []
+quanityt = []
+
+#timet.append(time0)
+#quanityt.append(quantity0)
+
+tcurrent = time0
+Ncurrent = quantity0
+
+while tcurrent < max_time:
+    Ncurrent = (quantity0*(np.exp((-tcurrent/tau))))
+    tcurrent = tcurrent + timestep
+    timet.append(tcurrent)
+    quanityt.append(Ncurrent)
+
+plt.plot(time, quanity, "k-", label="Calculated Values")
+plt.plot(timet, quanityt, "k--", label="Exact Values")
+plt.title("Particle Quantity vs Time")
+plt.ylabel("Quanity (N)")
+plt.xlabel("Time (s)")
+plt.legend()
