@@ -10,7 +10,7 @@ import numpy as np
 def f(x,t):
     return t - x**2
 
-def Euler(x0,tn,qn):
+def Euler(x0,tn,qn):##This defines the function we will be useing later Certian variables are static for consiteanty purpses
     tc = time0
     qc = x0
     
@@ -23,42 +23,47 @@ def Euler(x0,tn,qn):
 
 plt.rcParams['figure.dpi'] = 300
 
-timestep = 0.05 #h / time change
-max_time = 9 #tmax
-tau = 3.0 ##lifetime for decay/time constant
-
+timestep = 0.01 #h / time change
+max_time = 9#tmax
 time0 = 1 ##t
 
-#%%
-quantity0 = 1 ## x0
-
 time = []
 quanity = []
+Euler(1, time, quanity)
 
-time.append(time0)
-quanity.append(quantity0)
+t1 = []
+q1 = []
+Euler(2, t1, q1)
 
-timec= time0 #time current
-quantc = quantity0 #quantity curreent (N)
+t2 = []
+q2 = []
+Euler(1.5, t2, q2)
 
-while not abs(timec-max_time) < timestep/2:
-    quantc = quantc + (timestep*f(quantc,timec))
-    timec = timec + timestep
-    time.append(timec)
-    quanity.append(quantc)
+t3 = []
+q3 = []
+Euler(0.5, t3, q3)
 
-#%%
+t4 = []
+q4 = []
+Euler(0, t4, q4)
 
-time = []
-quanity = []
+t5 = []
+q5 = []
+Euler(-0.5, t5, q5)
 
-Euler(3, time, quanity)
+t6 = []
+q6 = []
+Euler(-1, t6, q6)
 
 
-
-
-plt.plot(time, quanity, "k-", label="Calculated Values")
+plt.plot(time, quanity, "k-", label="x0 = 1")
+plt.plot(t1, q1, "-", label="x0 = 2")
+plt.plot(t2, q2, "-", label="x0 = 1.5")
+plt.plot(t3, q3, "-", label="x0 = 0.5")
+plt.plot(t4, q4, "-", label="x0 = 0")
+plt.plot(t5, q5, "-", label="x0 = -0.5")
+plt.plot(t6, q6, "-", label="x0 = -1")
 plt.title("Particle Quantity vs Time")
-plt.ylabel("Quanity (N)")
+plt.ylabel("Quanity (x)")
 plt.xlabel("Time (s)")
 plt.legend()
