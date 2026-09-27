@@ -7,6 +7,10 @@ Created on Fri Sep 18 2026
 import matplotlib.pyplot as plt
 import numpy as np
 
+plt.rcParams['figure.dpi'] = 300
+
+
+
 def f(x,t):
     return t - x**2
 
@@ -23,7 +27,7 @@ def Euler(x0,tn,qn):##This defines the function we will be useing later Certian 
 
 plt.rcParams['figure.dpi'] = 300
 
-timestep = 0.01 #h / time change
+timestep = 0.1 #h / time change
 max_time = 9#tmax
 time0 = 1 ##t
 
