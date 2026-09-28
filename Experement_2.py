@@ -6,6 +6,7 @@ Created on Fri Sep 18 2026
 """
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 plt.rcParams['figure.dpi'] = 300
 
@@ -27,8 +28,8 @@ def Euler(x0,tn,qn):##This defines the function we will be useing later Certian 
 
 plt.rcParams['figure.dpi'] = 300
 
-timestep = 0.1 #h / time change
-max_time = 9#tmax
+timestep = 0.5 #h / time change
+max_time = 10#tmax
 time0 = 1 ##t
 
 time = []
@@ -60,14 +61,30 @@ q6 = []
 Euler(-1, t6, q6)
 
 
-plt.plot(time, quanity, "k-", label="x0 = 1")
+tn = []
+qn = []
+
+tc = 1 
+
+while not abs(tc-max_time) < timestep/2:
+    qc = math.sqrt(tc)
+    tc = tc + timestep
+    tn.append(tc)
+    qn.append(qc)
+    
+plt.plot(tn, qn, "k-", label="x = t(sqrt(x))")
+
+plt.plot(time, quanity, "-", label="x0 = 1")
 plt.plot(t1, q1, "-", label="x0 = 2")
 plt.plot(t2, q2, "-", label="x0 = 1.5")
 plt.plot(t3, q3, "-", label="x0 = 0.5")
 plt.plot(t4, q4, "-", label="x0 = 0")
 plt.plot(t5, q5, "-", label="x0 = -0.5")
 plt.plot(t6, q6, "-", label="x0 = -1")
-plt.title("Particle Quantity vs Time")
+plt.title("E2: x vs Time with h ="+str(timestep))
 plt.ylabel("Quanity (x)")
 plt.xlabel("Time (s)")
 plt.legend()
+
+#%%
+

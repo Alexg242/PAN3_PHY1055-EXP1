@@ -41,7 +41,7 @@ def E4(h, axs):
     axs.plot(tar,var,"--",label="v(t) for h = "+str(h), linewidth =1)
     return xar
 
-hvals = [0.5, 0.2, 0.1]
+hvals = [0.5, 0.2, 0.01]
 
 for i in hvals:
     xar = E4(i, plt)
@@ -61,7 +61,7 @@ while tcurrent < tmax:
 
 plt.plot(timet, quanityt,"k-", label="Exact Values", linewidth =1)
 plt.legend()
-plt.title("Particle Quantity vs Time")
+plt.title("E4: Agragate Harmoic Oscilators")
 plt.ylabel("Quanity (x)")
 plt.xlabel("Time (s)")
 plt.legend(loc=1,fontsize =5 )
@@ -77,7 +77,7 @@ for i in timet:
     temp = abs(quanityt(i)-xar(i))
     values.append[temp]"""
 
-Comparison = np.subtract(quanityt,xar)
+Comparison = (np.subtract(quanityt,xar))
 
 plt.plot(timet, Comparison,"k-", label="Exact Values", linewidth =1)
 plt.title("Diffence Between True value and Calulated value (h=0.1) vs Time")

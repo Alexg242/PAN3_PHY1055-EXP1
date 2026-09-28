@@ -91,7 +91,6 @@ ax2.set_ylabel("x")
 ax1.set_title("Comparitive Values of Timestep(h)")
 ax2.set_title("Exact Value vs Calulated Value")
 ax2.axis()
-fig.suptitle("R6: Driven Oscillator")
 ax2.legend(loc=3)
 ax1.legend(loc=8, fontsize =10)
 
